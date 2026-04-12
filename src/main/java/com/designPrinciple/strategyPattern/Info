@@ -1,0 +1,27 @@
+Chapter 1 – Strategy Pattern
+
+Principles:
+- Encapsulate what varies
+- Program to interfaces, not implementations
+- Favor composition over inheritance
+- Aim for loose coupling
+
+Goal:
+Make behavior interchangeable and flexible at runtime.
+
+strategy/
+ ├── behavior/
+ │     ├── FlyBehavior.java
+ │     ├── FlyWithWings.java
+ │     ├── FlyNoWay.java
+ │     ├── QuackBehavior.java
+ │     ├── Quack.java
+ │     ├── Squeak.java
+ │     └── MuteQuack.java
+ │
+ ├── duck/
+ │     ├── Duck.java
+ │     ├── MallardDuck.java
+ │     └── RubberDuck.java
+ │
+ └── Main.java
