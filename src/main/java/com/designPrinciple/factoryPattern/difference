@@ -1,0 +1,60 @@
+================= FACTORY vs STRATEGY (SHORT & CLEAR) =================
+
+1. PURPOSE
+--------------------------------------------------
+Factory Pattern  : Creates objects
+Strategy Pattern : Changes behavior (logic/algorithm)
+
+--------------------------------------------------
+
+2. WHO DECIDES IMPLEMENTATION?
+--------------------------------------------------
+Factory Pattern  : Factory class decides
+Strategy Pattern : Client decides
+
+--------------------------------------------------
+
+3. HOW IT WORKS
+--------------------------------------------------
+Factory Pattern:
+    Payment p = PaymentFactory.getPayment("credit");
+    // You pass a TYPE → Factory returns object
+
+Strategy Pattern:
+    PaymentStrategy s = new CreditCardPayment();
+    PaymentGateway g = new PaymentGateway(s);
+    // You pass the IMPLEMENTATION itself
+
+--------------------------------------------------
+
+4. INPUT TYPE
+--------------------------------------------------
+Factory Pattern  : String / enum / identifier
+Strategy Pattern : Object (actual class instance)
+
+--------------------------------------------------
+
+5. FOCUS
+--------------------------------------------------
+Factory Pattern  : Object Creation
+Strategy Pattern : Runtime Behavior Switching
+
+--------------------------------------------------
+
+6. DEPENDENCY
+--------------------------------------------------
+Factory Pattern:
+    Client depends on Factory
+
+Strategy Pattern:
+    Context depends on Strategy interface
+    Client injects implementation
+
+--------------------------------------------------
+
+7. REAL MEANING (1 LINE)
+--------------------------------------------------
+Factory  = "Give me an object based on type"
+Strategy = "Use this behavior to perform task"
+
+=======================================================================
