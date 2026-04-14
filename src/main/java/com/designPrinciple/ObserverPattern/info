@@ -1,0 +1,21 @@
+# Design Pattern: Observer
+
+This project demonstrates the **Observer Pattern** using a real-world scenario of a News Agency broadcasting updates to various News Channels.
+
+## 📌 Definition
+The **Observer Pattern** is a behavioral design pattern that defines a one-to-many dependency between objects. When one object (the **Subject**) changes its state, all its dependents (**Observers**) are notified and updated automatically.
+
+### Core Concepts:
+- **Loose Coupling:** The Subject doesn't need to know the specific implementation of the Observers.
+- **Runtime Subscription:** Observers can be added or removed dynamically while the application is running.
+
+---
+
+## 🛠️ Project Structure & Code Reference
+
+### 1. The Observer Interface (`NewsObserver.java`)
+This interface defines the contract for any object that wants to receive news updates.
+```java
+public interface NewsObserver {
+    void update(String breakingNews);
+}
