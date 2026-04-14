@@ -1,0 +1,59 @@
+# Design Pattern: Builder
+
+This project demonstrates the **Builder Pattern**, a creational design pattern used to construct complex objects step-by-step while maintaining immutability.
+
+## 📌 Definition
+The **Builder Pattern** separates the construction of a complex object from its representation. This allows the same construction process to create different representations and prevents "Telescoping Constructor" anti-patterns.
+
+### Core Problems Solved:
+- **Telescoping Constructors:** Avoids constructors with long, confusing lists of parameters (e.g., `new User("John", "Doe", 0, null, "Street", true...)`).
+- **Immutability:** Allows an object to be immutable (no setters) while still being flexible to configure during creation.
+- **Readability:** Provides a "Fluent API" that makes the code read like a sentence.
+
+---
+
+## 🛠️ Project Structure & Code Reference
+
+### 1. The Product & Inner Builder (`User.java`)
+The main class has a private constructor and a static inner class that handles the building process.
+
+```java
+public class User {
+    private final String firstName; // Mandatory
+    private final String lastName;  // Mandatory
+    private final int age;          // Optional
+    private final String phone;     // Optional
+
+    private User(UserBuilder builder) {
+        this.firstName = builder.firstName;
+        this.lastName = builder.lastName;
+        this.age = builder.age;
+        this.phone = builder.phone;
+    }
+
+    public static class UserBuilder {
+        private final String firstName;
+        private final String lastName;
+        private int age;
+        private String phone;
+
+        public UserBuilder(String firstName, String lastName) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+        }
+
+        public UserBuilder age(int age) {
+            this.age = age;
+            return this;
+        }
+
+        public UserBuilder phone(String phone) {
+            this.phone = phone;
+            return this;
+        }
+
+        public User build() {
+            return new User(this);
+        }
+    }
+}
