@@ -1,0 +1,33 @@
+# Design Pattern: State
+
+This repository demonstrates the **State Pattern** through a highly intuitive real-world example: a **Mobile Phone Screen**.
+
+## 📌 Definition
+The **State Pattern** is a behavioral design pattern that allows an object to change its behavior when its internal state changes. The object will appear to change its class.
+
+### The "Phone Screen" Logic:
+1. **Screen Off:** The home button wakes the phone; swiping does nothing.
+2. **Locked Screen:** The home button puts the phone to sleep; swiping unlocks the device.
+3. **Unlocked (Home):** The home button locks the phone; swiping navigates between apps.
+
+---
+
+## 🏗️ Architecture: The "State Cache" Strategy
+
+In this implementation, the `Phone` (Context) maintains references to all possible states (`offState`, `lockedState`, `unlockedState`) as fields.
+
+### Why not just use one `currentState` variable?
+* **Memory Efficiency:** We "pre-allocate" the state objects in the constructor. This prevents the application from creating a new object every time a user wakes or locks their phone, reducing **Garbage Collection** overhead.
+* **Performance:** Transitioning between states becomes a simple reference swap (`currentState = lockedState`) rather than an instantiation (`new LockedState()`).
+* **Zero-Identity Crisis:** States can easily request the "next" pre-existing state from the Context without needing to know how to construct it.
+
+---
+
+## 🛠️ Code Implementation
+
+### 1. The State Interface (`PhoneState.java`)
+```java
+public interface PhoneState {
+    void onHomePressed();
+    void onSwipe();
+}
