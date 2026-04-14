@@ -1,0 +1,40 @@
+# Design Pattern: Decorator
+
+This repository demonstrates the **Decorator Structural Design Pattern** through the intuitive example of a **Coffee Shop Ordering System**.
+
+## 📌 Definition
+The **Decorator Pattern** allows you to add new behaviors to an existing object dynamically without altering its structure. It is a flexible alternative to subclassing for extending functionality.
+
+### The "Russian Doll" Analogy:
+Think of the Decorator pattern as a set of Russian Matryoshka dolls.
+1. The smallest doll is the **Core Component** (e.g., Plain Coffee).
+2. Each larger doll is a **Decorator** (e.g., Milk, Sugar, Whip) that wraps the doll inside it.
+3. To the end-user, the entire stack still looks like a "Coffee," but each layer adds its own cost and description.
+
+
+
+---
+
+## 🏗️ Architecture & The `super()` Constructor
+
+A critical part of this pattern is how the wrappers are linked. We use an **Abstract Decorator** to handle the "plumbing."
+
+### Why use `super(coffee)`?
+In the concrete decorators (like `MilkDecorator`), we call `super(coffee)` to pass the inner object up to the `CoffeeDecorator` base class.
+
+* **Centralized Storage:** It ensures the `decoratedCoffee` reference is stored in one place.
+* **Encapsulation:** It allows the base class to manage the "inner doll" while subclasses focus only on adding new behavior.
+* **Chain Reaction:** It enables the "bubble-up" logic where calling `getCost()` on the outer layer triggers a recursive call down to the core.
+
+
+
+---
+
+## 🛠️ Implementation Reference
+
+### 1. The Interface (`Coffee.java`)
+```java
+public interface Coffee {
+    String getDescription();
+    double getCost();
+}
