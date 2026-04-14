@@ -1,0 +1,51 @@
+# Design Pattern: Singleton
+
+This project demonstrates the implementation and theory behind the **Singleton Pattern** in Java, focusing on thread safety and resource management.
+
+## 📌 Definition
+The **Singleton Pattern** is a creational design pattern that ensures a class has only **one instance** while providing a global point of access to that instance.
+
+### Key Characteristics:
+1. **Private Constructor:** Prevents direct instantiation from other classes.
+2. **Private Static Variable:** Holds the unique instance of the class.
+3. **Public Static Method:** (e.g., `getInstance()`) Provides the global access point.
+
+---
+
+## 🔒 The `synchronized` Keyword
+In a multi-threaded environment, the standard Singleton implementation can fail if two threads enter the instantiation block simultaneously. To prevent this, we use synchronization.
+
+- **How it works:** It creates a "lock" on the method or block. Only one thread can execute the synchronized code at a time.
+- **Double-Checked Locking:** Instead of synchronizing the entire method (which is slow), we check if the instance is null, then synchronize, then check again. This optimizes performance by only locking during the initial creation.
+
+---
+
+## 🛠️ Implementation Example: Configuration Manager
+
+Below is a thread-safe implementation using **Double-Checked Locking** and the `volatile` keyword.
+
+```java
+public class AppConfig {
+    // 'volatile' ensures visibility of changes across threads
+    private static volatile AppConfig instance;
+    private String appName;
+
+    // 1. Private Constructor
+    private AppConfig() {
+        this.appName = "SingletonProject-1.0";
+    }
+
+    // 2. Global Access Point with Double-Checked Locking
+    public static AppConfig getInstance() {
+        if (instance == null) {                         // First Check
+            synchronized (AppConfig.class) {            // Lock
+                if (instance == null) {                 // Second Check
+                    instance = new AppConfig();
+                }
+            }
+        }
+        return instance;
+    }
+
+    public String getAppName() { return appName; }
+}
