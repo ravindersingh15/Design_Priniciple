@@ -1,4 +1,4 @@
-package com.designPrinciple.ObserverPattern;
+package com.designPrinciple.observerPattern;
 
 // NewsAgency.java
 import java.util.ArrayList;

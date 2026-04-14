@@ -1,4 +1,4 @@
-package com.designPrinciple.ObserverPattern;
+package com.designPrinciple.observerPattern;
 
 // Observer.java
 public interface NewsObserver {

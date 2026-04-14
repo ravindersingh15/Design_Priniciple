@@ -1,4 +1,4 @@
-package com.designPrinciple.ObserverPattern;
+package com.designPrinciple.observerPattern;
 
 // Main.java
 public class Main {

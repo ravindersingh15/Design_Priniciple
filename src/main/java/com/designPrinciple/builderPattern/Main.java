@@ -1,4 +1,4 @@
-package com.designPrinciple.BuilderPattern;
+package com.designPrinciple.builderPattern;
 
 public class Main {
     public static void main(String[] args) {

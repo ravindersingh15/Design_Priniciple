@@ -1,4 +1,4 @@
-package com.designPrinciple.BuilderPattern;
+package com.designPrinciple.builderPattern;
 
 public class User {
     // All fields are final (Immutable)
